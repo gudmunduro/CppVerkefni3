@@ -47,5 +47,11 @@ namespace Functions { // Fyiri einhver random f�ll sem �g held a� �g mun
 		}
 	}
 
-
+    inline void ArrayStringToInt(string* from, int* to, int size)
+    {
+	    for (int i = 0; i < size; i++)
+        {
+	        to[i] = stoi(from[i]);
+        }
+    }
 }

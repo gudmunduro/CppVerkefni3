@@ -73,6 +73,13 @@ int main()
         const int bitsInFirstNetwork = IntInput("Fjöldi neta í upphafsneti: ");
         const int networkCount = IntInput("Fjöldi neta sem á að skipta upphafsnetinu í: ");
 
+        string *hostsOnNetworks = new string[100];
+        if (Input("Eiga öll netin að vera jafn stór (j/n)? ") == "j")
+        {
+            string hostsOnNetworkStr = Input("Sláðu inn fjölda hosta á hverju neti með kommu á milli: ");
+           SplitString(hostsOnNetworkStr, ',', hostsOnNetworks);
+        }
+
         calculateAndPrintIpAddresses(IpToInt(firstIp), bitsInFirstNetwork, networkCount);
     }
     return 0;
