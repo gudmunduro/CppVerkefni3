@@ -1,7 +1,9 @@
 #pragma once
+#include "pch.h"
 #include <iterator>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -36,14 +38,36 @@ namespace Functions { // Fyiri einhver random f�ll sem �g held a� �g mun
 		}
 	}
 
-	inline void SplitString(string str, string on, string *result)
+	inline void SplitString(string str, char on, string *result)
 	{
+		string buffer;
+		stringstream stream(str);
+
 		int current = 0;
-		while (str.find_first_of(on) != string::npos)
+		while (getline(stream, buffer, on))
 		{
-			const unsigned long index = str.find_first_of(on);
-			result[current] = str.substr(0, index);
-			str = str.substr(index, str.length());
+			result[current] = buffer;
+			current++;
+		}
+	}
+
+	inline void ____SplitString2(string str, string on, string *result)
+	{
+		// EKKI NOTA
+		int current = 0;
+		string cutStrings[10000];
+		cutStrings[0] = str;
+		while (cutStrings[current].find_first_of(on) != 0)
+		{
+			const unsigned long index = cutStrings[current].find_first_of(on);
+			cout << "!!    ";
+			cout << cutStrings[current] << endl;
+			cout << index;
+			cout << cutStrings[current].substr(0, index) << endl;
+			result[current] = cutStrings[current].substr(0, index);
+			current++;
+			cutStrings[current] = cutStrings[current - 1].substr(index + 1, cutStrings[current - 1].length());
+			cout << cutStrings[current];
 		}
 	}
 
